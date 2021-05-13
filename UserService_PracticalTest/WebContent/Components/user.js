@@ -90,67 +90,109 @@ $(document).on("click", "#btnSave", function(event)
 	
 	function validateItemForm()
 	{
-		// FIRST NAME
-		if ($("#fname").val().trim() == "")
-		 {
-		 	return "Insert First Name.";
-		 }
 		
-		// LAST NAME
-		if ($("#lname").val().trim() == "")
-		 {
-		 	return "Insert Last Name.";
-		 }
+		//Firstname Validation
+		var fname=$("#fname").val();
 		
-		// NIC
-		if ($("#nic").val().trim() == "")
-		 {
-		 	return "Insert NIC Number.";
-		 }
 		
-		// ADDRESS
+	  	if (fname == " " ||fname.trim().length == 0) //check length of value and value is empty
+		{ 
+		     return 'Insert First Name';
+		 }
+		 
+		else if (!(/^\w+$/i.test(fname))) //only allow numbers and letter for name
+		{ 
+		       return 'Invalid First Name.';
+	  	}
+
+
+		//Lastname validation
+		var lname=$("#lname").val();
+		
+		if (lname == " " ||lname.trim().length == 0) //check length of value and value is empty
+		{   
+               return 'Insert Last Name.';
+        }
+
+        else if (!(/^\w+$/i.test(lname))) //only allow numbers and letter for name
+		{    
+        	return 'Invalid Last Name.';
+        }
+
+
+		//NIC Validation
+		var nic =$("#nic").val();
+		var format1= /^([0-9]{9}[Vv])+$/; // format for 9 digit and one letter
+		var format2 = /^([0-9]{12})+$/; //format for 12 digit
+		
+		if(nic == ""||nic.trim().length == 0)  //check length of value and value is empty
+		{
+		   return 'Insert NIC Number.';
+		}
+		
+		else if((nic.length ==10 && (format1.test( nic )))){ }// check user input value length is 10 and the format is correct
+		    
+		     
+		else if(nic.length ==12 && (format2.test( nic))) {} // check user input value length is 12 and the format is correct
+		        
+		else
+		{
+		    return 'Invalid NIC format.';
+		}
+		
+		//Address Validation
 		if ($("#address").val().trim() == "")
 		 {
 		 	return "Insert Address.";
 		 }
+
 		
-		// PHONE
-		if ($("#phone").val().trim() == "")
-		 {
-		 	return "Insert Phone Number.";
-		 }
+		//Phone validation
+		var phone =$("#phone").val();
+		   
+		if(phone.length==0 && phone.trim() =='') // check format and length of the value 
+		{
+		    return 'Insert Phone Numbers.';
+		     
+		}
+		   
+		else if (phone.length >1 && !(/^([0-9]{10})+$/.test( phone )))
+		{
+		    return  'Insert 10 numbers for Phone Number.';
+		}
 		
-		// EMAIL
-	
+		
+		// Email validation
 		if ($("#email").val().trim() == "")
 		 {
 		 	return "Insert Email Address.";
 		 }
-	
-		// USERNAME
+
+
+		// Username Validation
 		if ($("#username").val().trim() == "")
 		 {
 		 	return "Insert Username.";
 		 }
 	
-		// PASSWORD
-		if ($("#password").val().trim() == "")
-		 {
-		 	return "Insert Password.";
-		 }
 	
-				
-		// is numerical value
-		var tmpPhone = $("#phone").val().trim();
-		if (!$.isNumeric(tmpPhone))
-		 {
-		 	return "Insert a numerical value for Phone number.";
-		 }
+		// Password Validation
+		var password =$("#password").val();
 		
-		// convert to decimal price
-		 //$("#itemPrice").val(parseFloat(tmpPrice).toFixed(2));
+		if(password.trim() == '') 
+		{
+		    return 'Insert Password.';
+		     
+		}
+		   
+		else if (password.length < 6 )
+		{
+		    return  'Password is not Strong!!.';
+		}
 		
-			return true;
+		
+		
+	return true;
 }
 
 function onItemSaveComplete(response, status)

@@ -59,7 +59,7 @@
 		 <br> 
 		 
 		 Password:
-		 <input id="password" name="password" type="password" 
+		 <input id="password" name="password" type="password" placeholder = "Insert more than 6 digits..."
 		 class="form-control form-control-sm">
 		 <br> 
 		 

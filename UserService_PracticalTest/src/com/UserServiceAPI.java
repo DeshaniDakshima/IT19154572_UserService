@@ -75,9 +75,10 @@ public class UserServiceAPI extends HttpServlet {
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
 		
 		Map paras = getParasMap(request);
+		
 		String result = userObj.updateUserDetails(paras.get("hidItemIDSave").toString(), paras.get("fname").toString(), paras.get("lname").toString(),
 				paras.get("nic").toString(), paras.get("address").toString(), paras.get("phone").toString(), paras.get("email").toString(),
 				paras.get("username").toString(), paras.get("password").toString());
